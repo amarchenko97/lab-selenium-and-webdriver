@@ -48,7 +48,9 @@ class WebDriverFactory:
 
     @staticmethod
     def get_chrome_driver():
-        return webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        options = Options()
+        options.add_argument("--disable-smooth-scrolling")
+        return webdriver.Chrome(options=options, service=Service(ChromeDriverManager().install()))
 
     @staticmethod
     def get_remote_driver():
@@ -56,6 +58,7 @@ class WebDriverFactory:
         options.add_argument('--window-size=850, 1980')
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
+        options.add_argument("--disable-smooth-scrolling")
 
         # Этот аргумент я добавил, чтобы избежать ошибки "selenium.common.exceptions.
         # WebDriverException: Message: unknown error: session deleted because of page crash"

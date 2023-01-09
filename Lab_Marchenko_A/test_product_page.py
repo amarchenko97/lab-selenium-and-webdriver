@@ -1,9 +1,6 @@
 import unittest
 from PageObject.Product_Page import ProductPage
-from selenium.webdriver.chrome.options import Options
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_factory import WebDriverFactory
 
 
 class ProductPageTests(unittest.TestCase):
@@ -12,12 +9,7 @@ class ProductPageTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        options = Options()
-        options.add_argument("--disable-smooth-scrolling")
-        cls.driver = webdriver.Chrome(
-            options=options,
-            service=Service(ChromeDriverManager().install())
-        )
+        cls.driver = WebDriverFactory.get_driver()
         cls.product_page = ProductPage(cls.driver)
         cls.product_page.open()
 

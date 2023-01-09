@@ -1,11 +1,6 @@
 import unittest
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
 from PageObject.SearchPage import SearchPage
+from webdriver_factory import WebDriverFactory
 
 
 class SearchPageTest(unittest.TestCase):
@@ -16,12 +11,7 @@ class SearchPageTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        options = Options()
-        options.add_argument("--disable-smooth-scrolling")
-        cls.driver = webdriver.Chrome(
-            options=options,
-            service=Service(ChromeDriverManager().install())
-        )
+        cls.driver = WebDriverFactory.get_driver()
         cls.searchPage = SearchPage(cls.driver)
         cls.searchPage.open()
 
