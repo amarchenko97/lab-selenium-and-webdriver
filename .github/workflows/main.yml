@@ -29,8 +29,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with unittest
       run: |
-        pwd
-        python -m unittest discover -v -s . -p test_*.py
+        python -m unittest discover -s /home/runner/work/lab-selenium-and-webdriver/lab-selenium-and-webdriver/Lab_Marchenko_A -t /home/runner/work/lab-selenium-and-webdriver/lab-selenium-and-webdriver/Lab_Marchenko_A -p test*.py
       env:
         SELENIUM_DRIVER_KIND: remote
     - name: Upload test reports
