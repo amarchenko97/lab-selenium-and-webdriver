@@ -29,7 +29,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
-        pytest -v --junitxml=test-reports/report.xml --html=test-reports/report.html
+        python -m unittest discover -v
       env:
         SELENIUM_DRIVER_KIND: remote
     - name: Upload test reports
